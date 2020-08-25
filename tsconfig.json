@@ -5,6 +5,7 @@
     "charset": "utf-8",
     "declaration": false,
     "declarationMap": false,
+    "jsx": "react",
     "importHelpers": true,
     "lib": ["DOM", "DOM.Iterable", "ES2019"],
     "module": "commonjs",
@@ -14,6 +15,7 @@
     "noUnusedParameters": true,
     "pretty": true,
     "rootDir": "src",
+    "baseUrl": "src",
     "strict": true,
     "strictNullChecks": true,
     "target": "es2019",
@@ -22,8 +24,9 @@
     "incremental": true,
     "resolveJsonModule": true,
     "sourceMap": true,
-    "tsBuildInfoFile": "./.cache/typescript"
+    "tsBuildInfoFile": "./.cache/typescript",
+    "esModuleInterop": true
   },
-  "files": ["./src/index.ts"],
+  "files": ["./src/index.tsx"],
   "include": ["./**/*"]
 }

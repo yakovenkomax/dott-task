@@ -18,7 +18,7 @@ const configuration = {
   },
   devtool: 'cheap-module-eval-source-map',
   entry: {
-    app: './src/index.ts',
+    app: './src/index.tsx',
   },
   mode: 'development',
   module: {
@@ -26,12 +26,25 @@ const configuration = {
       {
         loader: 'html-loader',
         options: {
-          attrs: ['img:src', 'link:href'],
+          attributes: {
+            list: [
+              {
+                tag: 'img',
+                attribute: 'src',
+                type: 'src',
+              },
+              {
+                tag: 'link',
+                attribute: 'href',
+                type: 'src',
+              },
+            ],
+          },
         },
         test: /\.html$/u,
       },
       {
-        test: /\.ts$/u,
+        test: /\.tsx?$/u,
         use: [
           {
             loader: 'ts-loader',
@@ -59,7 +72,7 @@ const configuration = {
         ],
       },
       {
-        test: /\.(svg)$/,
+        test: /\.svg$/u,
         use: [
           {
             loader: 'file-loader',
@@ -97,7 +110,8 @@ const configuration = {
     }),
   ],
   resolve: {
-    extensions: ['.js', '.ts'],
+    extensions: ['.ts', '.tsx', '.js'],
+    modules: ['node_modules', `${__dirname}/src`],
     mainFields: ['browser', 'module', 'main'],
   },
   watch: true,
