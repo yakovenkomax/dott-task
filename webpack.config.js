@@ -72,7 +72,7 @@ const configuration = {
         ],
       },
       {
-        test: /\.svg$/u,
+        test: /\.(png|jpe?g|gif|svg)$/u,
         use: [
           {
             loader: 'file-loader',
