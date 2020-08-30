@@ -1,37 +1,15 @@
-# Front End Assignment Boilerplate
+# Description
 
-This project can serve as a baseline for your front end assignment. Take some
-time to familiarize yourself with the structure, configuration and scripts.
-Depending on how you choose to implement your solution you may find that you
-need to delete or change parts of this base setup — feel free to do so. We have
-set this project up create a more accurate image of what our expectations are,
-and to help you get started. If you feel like it does not help you on your way,
-feel free to discard it and create your own. However, it might prove useful to
-look through this boilerplate regardless to get a better idea of our
-expectations.
+Your task is to develop a single page application using Typescript where users can upload a picture of a dog and see a gallery of pictures of dogs of the same breed. More specifically, the application should allow users to upload a picture and see it in a preview. The app should classify a dog present in the image based on their breed and display the result. Further, the application should showcase pictures of dogs of the same breed in a gallery below. The gallery should take all the available screen space and consist of lazy loaded images. The images that don’t fit the current screen should be accessible with an “infinite scroll”-approach.
 
-Simply clone this project and get started. You can replace this readme with your
-own when you are finished.
+For image classification we suggest you use the pre-trained tensorflow.js-model available at:
+https://github.com/tensorflow/tfjs-models/tree/master/mobilenet
 
-## Available scripts
+For finding pictures of dogs based on their breed we suggest you refer to the following API:
+https://dog.ceo/dog-api/
 
-To start the project, simply run:
+To start the project run:
 
 ```bash
 npm run start
-```
-
-To run the linter, execute the command:
-
-```bash
-npm run lint
-```
-
-optionally, you can append `:fix` to automatically fix any auto-fixable linting
-issues.
-
-To test you application, use:
-
-```bash
-npm run test
 ```
