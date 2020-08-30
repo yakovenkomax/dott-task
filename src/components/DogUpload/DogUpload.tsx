@@ -36,6 +36,7 @@ const DogUpload = (props: Props): ReactElement | null => {
   const DogImage = dogImagesList[randomImageIndex];
 
   const handleChange = async (src: string): Promise<void> => {
+    onChange('');
     setFileSrc(src);
 
     setClassificationInProgress(true);
