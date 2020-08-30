@@ -1,6 +1,14 @@
+import ErrorMessage from 'components/ErrorMessage/ErrorMessage';
 import { BreedListType, getMatchingBreedInfo } from 'components/Gallery/util';
-import React, { ReactElement, useEffect, useState } from 'react';
+import Loader from 'components/Loader/Loader';
+import Panel from 'components/Panel/Panel';
+import Text from 'components/Text/Text';
+import React, { ReactElement, ReactNode, useEffect, useState } from 'react';
 import LazyLoad from 'react-lazyload';
+
+import s from './Gallery.module.css';
+import DividerLeftImage from './images/divider-left.svg';
+import DividerRightImage from './images/divider-right.svg';
 
 interface Props {
   breedName: string;
@@ -39,6 +47,8 @@ const Gallery = (props: Props): ReactElement | null => {
     const matchingBreedInfo = getMatchingBreedInfo(breedName, breedList);
 
     if (matchingBreedInfo.breed === undefined) {
+      setImageList([]);
+
       return;
     }
 
@@ -65,26 +75,46 @@ const Gallery = (props: Props): ReactElement | null => {
   }
 
   return (
-    <>
+    <div className={s.root}>
+      {!imageListIsLoaded && <Loader />}
       {breedListError !== '' && (
-        <div>An breedListError occurred: {breedListError}</div>
+        <ErrorMessage message="Couldn't load the list of breeds" type="error" />
       )}
-      {imageListError !== '' && (
-        <div>An imageListError occurred: {breedListError}</div>
-      )}
-      {!imageListIsLoaded && <div>Images are loading...</div>}
+      {imageListError !== '' ||
+        (imageList.length === 0 && imageListIsLoaded && (
+          <ErrorMessage
+            message="Couldn't find images of this breed of dogs"
+            type="notFound"
+          />
+        ))}
       {imageList.length > 0 && (
-        <div>
-          {imageList.map(
-            (image: string): ReactElement => (
-              <LazyLoad key={image}>
-                <img src={image} />
-              </LazyLoad>
-            ),
-          )}
-        </div>
+        <>
+          <div className={s.header}>
+            <DividerLeftImage />
+            <Text className={s.title} size="subheading">
+              More of this breed
+            </Text>
+            <DividerRightImage />
+          </div>
+          <ul className={s.list}>
+            {imageList.map(
+              (image: string): ReactNode => (
+                <li className={s.listItem} key={image}>
+                  <Panel className={s.panel}>
+                    <LazyLoad once offset={100}>
+                      <img className={s.image} src={image} />
+                    </LazyLoad>
+                  </Panel>
+                </li>
+              ),
+            )}
+          </ul>
+          <Text className={s.end} size="heading">
+            ❧
+          </Text>
+        </>
       )}
-    </>
+    </div>
   );
 };
 

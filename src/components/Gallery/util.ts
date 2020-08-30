@@ -17,8 +17,7 @@ export const getMatchingBreedInfo = (
     return matchingBreedInfo;
   }
 
-  const [mainBreedName] = breedName.split(',');
-  const breedKeys = mainBreedName.split(' ');
+  const breedKeys = breedName.split(' ');
   const matchingBreed = Object.keys(breedList).find((key: string): boolean =>
     breedKeys.includes(key),
   );

@@ -1,42 +1,27 @@
-import * as mobilenet from '@tensorflow-models/mobilenet';
+import DogUpload from 'components/DogUpload/DogUpload';
 import Gallery from 'components/Gallery/Gallery';
-import ImagePreview from 'components/ImagePreview/ImagePreview';
-import ImageUpload from 'components/ImageUpload/ImageUpload';
-import React, { ReactElement, useState } from 'react';
+import Text from 'components/Text/Text';
+import React, { ReactNode, useState } from 'react';
 
-const App = (): ReactElement | null => {
-  const [fileUrl, setFileUrl] = useState('');
+import s from './App.module.css';
+
+const App = (): ReactNode => {
   const [breedName, setBreedName] = useState('');
-  const [classifyError, setErrorMessage] = useState('');
 
-  const classifyImage = async (src: string): Promise<void> => {
-    const img = new Image();
-    img.src = src;
-
-    const model = await mobilenet.load();
-    const predictions = await model.classify(img);
-    const detectedBreed = predictions[0].className.toLowerCase();
-
-    setBreedName(detectedBreed);
-  };
-
-  const onChange = (src: string): void => {
-    setFileUrl(src);
-    classifyImage(src).catch((error: Error): void => {
-      setErrorMessage(error.message);
-    });
+  const onChange = (breed: string): void => {
+    setBreedName(breed);
   };
 
   return (
-    <>
-      <ImageUpload onChange={onChange} />
-      <ImagePreview fileUrl={fileUrl} />
-      {breedName !== '' && <div>Detected breed: {breedName}</div>}
-      {classifyError !== '' && (
-        <div>An classifyError occurred: {classifyError}</div>
+    <div className={s.root}>
+      <DogUpload onChange={onChange} />
+      {breedName !== '' && (
+        <Text className={s.breedName} size="heading">
+          {breedName}
+        </Text>
       )}
       <Gallery breedName={breedName} />
-    </>
+    </div>
   );
 };
 

@@ -3,15 +3,18 @@
   "description": "Search for dogs",
   "devDependencies": {
     "@ridedott/eslint-config": "^2.2.11",
+    "@svgr/webpack": "^5.4.0",
     "@tensorflow-models/mobilenet": "^2.0.4",
     "@tensorflow/tfjs-converter": "^1.2.11",
     "@tensorflow/tfjs-core": "^1.2.11",
+    "@types/classnames": "^2.2.10",
     "@types/jest": "^26.0.10",
     "@types/react": "^16.9.47",
     "@types/react-dom": "^16.9.8",
     "@types/react-lazyload": "^2.6.0",
     "@types/webpack-env": "^1.15.2",
     "autoprefixer": "^9.8.6",
+    "classnames": "^2.2.6",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^4.2.2",
     "cssnano": "^4.1.10",
@@ -106,7 +109,8 @@
       "immutable/no-mutation": "off",
       "immutable/no-this": "off",
       "unicorn/filename-case": "off",
-      "unicorn/prevent-abbreviations": "off"
+      "unicorn/prevent-abbreviations": "off",
+      "id-length": "off"
     },
     "ignorePatterns": [
       "webpack.config.js",
@@ -145,6 +149,14 @@
         {
           "ignore": [
             "custom-elements"
+          ]
+        }
+      ],
+      "selector-pseudo-class-no-unknown": [
+        true,
+        {
+          "ignorePseudoClasses": [
+            "global"
           ]
         }
       ],

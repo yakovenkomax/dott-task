@@ -1,0 +1,20 @@
+.root {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: var(--unit-2x);
+}
+
+.icon {
+  margin-bottom: var(--unit-2x);
+}
+
+.icon svg {
+  fill: var(--color-gray-1);
+  width: 60px;
+}
+
+.text {
+  margin: 0;
+  text-align: center;
+}

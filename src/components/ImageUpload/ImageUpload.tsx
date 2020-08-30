@@ -1,11 +1,14 @@
-import React, { ReactElement, SyntheticEvent } from 'react';
+import React, { ReactElement, ReactNode, SyntheticEvent } from 'react';
+
+import s from './ImageUpload.module.css';
 
 interface Props {
+  children: ReactNode;
   onChange: (fileUrl: string) => void;
 }
 
 const ImageUpload = (props: Props): ReactElement | null => {
-  const { onChange } = props;
+  const { onChange, children } = props;
 
   const handleChange = (event: SyntheticEvent<HTMLInputElement>): void => {
     event.preventDefault();
@@ -30,11 +33,16 @@ const ImageUpload = (props: Props): ReactElement | null => {
   };
 
   return (
-    <input
-      type="file"
-      onChange={handleChange}
-      accept={'image/jpeg, image/gif, image/png'}
-    />
+    <label className={s.label} htmlFor="file">
+      <input
+        className={s.input}
+        type="file"
+        id="file"
+        onChange={handleChange}
+        accept={'image/jpeg, image/gif, image/png'}
+      />
+      {children}
+    </label>
   );
 };
 

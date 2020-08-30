@@ -1,0 +1,14 @@
+.root {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100%;
+  padding: var(--unit-4x);
+}
+
+.breedName {
+  margin: var(--unit-4x) 0;
+  text-align: center;
+}

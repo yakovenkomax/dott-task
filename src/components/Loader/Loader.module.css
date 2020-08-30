@@ -1,0 +1,39 @@
+.root {
+  display: flex;
+  height: var(--unit-4x);
+  justify-content: center;
+  margin: var(--unit-4x) var(--unit-2x) var(--unit-3x);
+}
+
+.root svg {
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-name: spin;
+  animation-timing-function: linear;
+  fill: var(--color-gray-1);
+  height: 100%;
+  position: relative;
+}
+
+@keyframes spin {
+  0% {
+    bottom: 0;
+  }
+  25% {
+    animation-timing-function: ease-in;
+    bottom: 10px;
+  }
+  50% {
+    animation-timing-function: ease-out;
+    bottom: 0;
+  }
+  75% {
+    animation-timing-function: ease-in;
+    bottom: 4px;
+  }
+  100% {
+    animation-timing-function: ease-out;
+    bottom: 0;
+    transform: rotate(360deg);
+  }
+}

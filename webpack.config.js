@@ -16,7 +16,7 @@ const configuration = {
     overlay: true,
     writeToDisk: false,
   },
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'cheap-module-source-map',
   entry: {
     app: './src/index.tsx',
   },
@@ -61,7 +61,14 @@ const configuration = {
         test: /\.css$/u,
         use: [
           'style-loader',
-          'css-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                localIdentName: '[name]__[local]--[hash:base64:5]',
+              },
+            },
+          },
           {
             loader: 'postcss-loader',
             options: {
@@ -72,13 +79,28 @@ const configuration = {
         ],
       },
       {
-        test: /\.(png|jpe?g|gif|svg)$/u,
+        test: /\.(png|jpe?g|gif)$/u,
         use: [
           {
             loader: 'file-loader',
             options: {
               name: '[hash].[ext]',
               outputPath: 'assets/images',
+            },
+          },
+        ],
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: '@svgr/webpack',
+            options: {
+              svgoConfig: {
+                plugins: {
+                  removeViewBox: false,
+                },
+              },
             },
           },
         ],
@@ -104,6 +126,7 @@ const configuration = {
       inject: true,
       minify: false,
       template: 'src/index.html',
+      favicon: 'src/favicon.svg',
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development'),

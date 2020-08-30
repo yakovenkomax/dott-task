@@ -1,0 +1,17 @@
+.label {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+.input {
+  cursor: pointer;
+  display: block;
+  height: 100%;
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}
