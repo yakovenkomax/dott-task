@@ -33,7 +33,7 @@
     "react-dom": "^16.13.1",
     "react-lazyload": "^3.0.0",
     "style-loader": "^1.2.1",
-    "stylelint": "^13.6.1",
+    "stylelint": "^15.10.1",
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-standard": "^20.0.0",
     "stylelint-order": "^4.1.0",
